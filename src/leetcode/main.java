@@ -14,16 +14,16 @@ public class main {
 //		int answer = hammingDistance(x, y);
 //		System.out.println(answer);
 		
-//		TreeNode t1 = new TreeNode(1);
-//		TreeNode t1Left = new TreeNode(3);
-//		t1.left = t1Left;
-//		t1.right = new TreeNode(2);
-//		t1Left.left = new TreeNode(5);
-//		TreeNode t2 = new TreeNode(2);
-//		TreeNode t2Left = new TreeNode(1);
-//		TreeNode t2Right = new TreeNode(3);
-//		t2Left.right = new TreeNode(4);
-//		t2Right.right = new TreeNode(7);
+		TreeNode t1 = new TreeNode(1);
+		TreeNode t1Left = new TreeNode(3);
+		t1.left = t1Left;
+		t1.right = new TreeNode(2);
+		t1Left.left = new TreeNode(5);
+		TreeNode t2 = new TreeNode(2);
+		TreeNode t2Left = new TreeNode(1);
+		TreeNode t2Right = new TreeNode(3);
+		t2Left.right = new TreeNode(4);
+		t2Right.right = new TreeNode(7);
 //		TreeNode answer = mergeTrees(t1, t2);
 //		System.out.println(answer.val+", "+answer.left.val+", "+answer.right.val);
 		
@@ -34,8 +34,11 @@ public class main {
 //		List<String> answer = fizzBuzz(15);
 //		System.out.println(answer);
 		
-		int[] nums = new int[] {1,2,2,4,1,4,5};
-		int answer = singelNumber(nums);
+//		int[] nums = new int[] {1,2,2,4,1,4,5};
+//		int answer = singleNumber(nums);
+//		System.out.println(answer);
+		
+		int answer = maxDepth(t1);
 		System.out.println(answer);
 	}
 	
@@ -173,7 +176,7 @@ public class main {
 	// Find that single one. Note:Your algorithm should have a linear runtime complexity.
 	// Could you implement it without using extra memory?
 	// TOO LONG. Commented out in exchange for bitwise XOR answer I found (ughhh).
-	public static int singelNumber(int[] nums) {
+	public static int singleNumber(int[] nums) {
 //		List<Integer> answer = new ArrayList<Integer>(0);
 //		
 //		for (int i=0;i<nums.length;++i) {
@@ -194,5 +197,20 @@ public class main {
 		}
 		
 		return ans;
+	}
+	
+	// Given a binary tree, find its maximum depth.
+	// Could of been easier by returning 0 if root==null and if not then return 1+Math.max(left,right)
+	public static int maxDepth(TreeNode root) {
+		int depth = 0;
+		
+		if (root != null) {
+			int leftNode = maxDepth(root.left);
+			int rightNode = maxDepth(root.right);
+			
+			depth = 1 + (leftNode >= rightNode ? leftNode : rightNode);
+		}
+		
+		return depth;
 	}
 }
