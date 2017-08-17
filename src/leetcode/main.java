@@ -14,16 +14,16 @@ public class main {
 //		int answer = hammingDistance(x, y);
 //		System.out.println(answer);
 		
-		TreeNode t1 = new TreeNode(1);
-		TreeNode t1Left = new TreeNode(3);
-		t1.left = t1Left;
-		t1.right = new TreeNode(2);
-		t1Left.left = new TreeNode(5);
-		TreeNode t2 = new TreeNode(2);
-		TreeNode t2Left = new TreeNode(1);
-		TreeNode t2Right = new TreeNode(3);
-		t2Left.right = new TreeNode(4);
-		t2Right.right = new TreeNode(7);
+//		TreeNode t1 = new TreeNode(1);
+//		TreeNode t1Left = new TreeNode(3);
+//		t1.left = t1Left;
+//		t1.right = new TreeNode(2);
+//		t1Left.left = new TreeNode(5);
+//		TreeNode t2 = new TreeNode(2);
+//		TreeNode t2Left = new TreeNode(1);
+//		TreeNode t2Right = new TreeNode(3);
+//		t2Left.right = new TreeNode(4);
+//		t2Right.right = new TreeNode(7);
 //		TreeNode answer = mergeTrees(t1, t2);
 //		System.out.println(answer.val+", "+answer.left.val+", "+answer.right.val);
 		
@@ -38,8 +38,14 @@ public class main {
 //		int answer = singleNumber(nums);
 //		System.out.println(answer);
 		
-		int answer = maxDepth(t1);
-		System.out.println(answer);
+//		int answer = maxDepth(t1);
+//		System.out.println(answer);
+		
+		int[] nums = new int[] {0, 1, 0, 3, 12};
+		moveZeroes(nums);
+		for (int i=0;i<nums.length;++i) {
+			System.out.println(nums[i]);
+		}
 	}
 	
 	// Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.
@@ -212,5 +218,37 @@ public class main {
 		}
 		
 		return depth;
+	}
+	
+	// Given an array nums, write a function to move all 0's to the end of it while maintaining the
+	// relative order of the non-zero elements.For example, given nums = [0, 1, 0, 3, 12], after 
+	// calling your function, nums should be [1, 3, 12, 0, 0]. Note:You must do this in-place without
+	// making a copy of the array and minimize the total number of operations.
+	// I suck. Here's a solution that isn't the garbage I just wrote.
+	public static void moveZeroes(int[] nums) {
+//		int counter = 0;
+//		
+//		for (int i=0;i<nums.length-counter;++i) {
+//			if (nums[i] == 0) {
+//				for (int j=i;j<nums.length-1-counter;++j) {
+//					nums[j] = nums[j+1];
+//				}
+//				nums[nums.length-1-counter] = 0;
+//				++counter;
+//			}
+//			if (nums[i] == 0 && i == nums.length-1) {
+//				for (int k=0;k<nums.length-1;++k) {
+//					if (nums[k] != 0) OK OK THIS IS AWFUL. LOOKING AT SOLUTION BECAUSE WOW THIS IS BAD
+//				}
+//			}
+//		}
+		int current = 0;
+
+		for (int i = 0; i < nums.length; ++i)
+			if (nums[i] != 0)
+				nums[current++] = nums[i]; // Remember it does the operation first, THEN increments.
+
+		for (int i = current; i < nums.length; ++i)
+			nums[i] = 0;
 	}
 }
